@@ -8,6 +8,20 @@
 </head>
 <body>
 
+	<header>
+		<% if session[:provider] %>
+
+			<%= image_tag session[:photo_url] %>
+			<%= session[:name] %>
+		<% else %>
+
+			<%= link_to "Log in with Facebook", "/auth/facebook" %>
+
+
+		<% end %>
+
+	</header>	
+
 <%= yield %>
 
 </body>
