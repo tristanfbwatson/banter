@@ -12,8 +12,21 @@ class SessionsController < ApplicationController
 		session[:name] = @omniauth[:info][:name]
 		session[:photo_url] = @omniauth[:info][:image]
 
+		Pusher['banter'].trigger("logged_in", {
+			name: session[:name]
+			})
+
 		redirect_to root_path
 
+	end
+
+	def destroy
+		Pusher['banter'].trigger("logged_out", {
+			name: session[:name]
+			})
+
+		reset_session
+		redirect_to root_path
 	end
 
 end

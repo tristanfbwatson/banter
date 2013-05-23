@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Banter</title>
+  <script src="http://js.pusher.com/2.0/pusher.min.js" type="text/javascript"></script>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -13,14 +14,21 @@
 
 			<%= image_tag session[:photo_url] %>
 			<%= session[:name] %>
+
+			<%= link_to "Log out", session_path, method: :delete %>
+
 		<% else %>
 
 			<%= link_to "Log in with Facebook", "/auth/facebook" %>
+			<%= link_to "Log in with Twitter", "/auth/Twitter" %>
 
 
 		<% end %>
 
 	</header>	
+
+	<ul id="log">
+	</ul>
 
 <%= yield %>
 

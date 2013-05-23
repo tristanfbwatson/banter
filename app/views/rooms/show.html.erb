@@ -1,8 +1,11 @@
 <h2><%= @room.title %></h2>
 
-<%= render partial: "message", collection: @room.messages %>
 
-<%= simple_form_for [@room, Message.new] do |f| %>
+<div id="messages" class="messages-<%= @room.id %>">
+<%= render partial: "message", collection: @room.messages %>
+</div>
+
+<%= simple_form_for [@room, Message.new], remote: true do |f| %>
 	<%= f.input :body, label: false %>
 	<%= f.button :submit, "Add message" %>
 <% end %>

@@ -7,6 +7,8 @@ Banter::Application.routes.draw do
     resources :messages
   end
 
+  resource :session
+
   root to: "rooms#index"
 
   end

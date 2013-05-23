@@ -9,9 +9,17 @@ class MessagesController < ApplicationController
 
 		if @message.save
 			flash[:success] = "Your message was saved"
+
+			Pusher["banter"].trigger("new_message", {
+				message_html: render_to_string(partial: "rooms/message", object: @message),
+				room_id: @room.id
+			})
+			
 		else
 			flash[:alert] = "Your message was blank"
 		end
+
+
 
 		redirect_to room_path(@room)
 	end
