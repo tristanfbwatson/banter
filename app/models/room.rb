@@ -7,4 +7,8 @@ class Room < ActiveRecord::Base
 
   validates :title, presence: true, uniqueness: true
 
+  def to_param
+  	url
+  end
+
 end
